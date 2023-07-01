@@ -61,7 +61,33 @@ Template Name: home
             $myposts = get_posts([ 
               'numberposts' => -1,
              // 'offset'      => 2,
-             // 'category'    => 0
+              'category'    => 2
+            ]);
+            if( $myposts ){
+            foreach( $myposts as $post ){
+            setup_postdata( $post );
+        ?>
+                <!-- Вывод постов, функции цикла: the_title() и т.д. -->
+            <div class="carousel__item">
+              <div class="carousel__item-box">
+                <?php the_post_thumbnail(array(380, 250), array('class' => 'carousel__item-img',)); ?>
+                <h4 class="carousel__item-title"><?php the_title();?></h4>
+                <p class="carousel__item-text"><?php the_content(); ?></p>
+              </div>
+            </div>
+        <?php } } wp_reset_postdata(); ?>
+      </div>
+      
+      <h2 class="title">
+        И другие АВТО
+      </h2>
+      <div class="carousel__inner">
+        <?php
+            global $post;
+            $myposts = get_posts([ 
+              'numberposts' => -1,
+             // 'offset'      => 2,
+              'category'    => 4
             ]);
             if( $myposts ){
             foreach( $myposts as $post ){
